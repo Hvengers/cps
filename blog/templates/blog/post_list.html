@@ -1,0 +1,129 @@
+<!--
+<html>
+    <head><title>Upload Test</title></head>
+    <body>
+
+    </body>
+</html>
+-->
+{% load static %}
+<html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="style-layout.css"/>
+    <title>Hvengers</title>
+    <style type= "text/css">
+
+        #border{margin-left: 80%; left: 10%; width: 60%; padding: 5px; border:medium double black; border-radius: 10px;}
+        #border1{float: right; left: 10%; width: 60%; padding: 5px; border:medium double black; border-radius: 10px;}
+    </style>
+    </head>
+    <body>
+
+      <form action="/upload/"
+            method="post"
+            enctype="multipart/form-data">
+          File:
+          <input type="file"
+                 name="file"
+                 id="id_file" />
+          <input type="submit" value="UPLOAD" />
+      </form>
+      <div>
+            <h1>Hvengers</h1>
+
+            <p>Current time: <span id="datetime"></span></p>
+        </div>
+        <hr/>
+        <div>
+            <h2>Taxi Status</h2>
+            <p>Taxi contenta</p>
+            <figure class="left">
+                <img src="{% static filename %}"  width ="400" height="300">
+                <figcaption>택시실내사진</figcaption>
+            </figure>
+          <aside class="right" id="border1">
+                <h3>
+                  <p>
+                  <ol>
+                    <li>택시정보</li>
+                    <ul>
+                      <li>택시회사: </li>
+                      <li>택시번호:{{taxiNumber}} </li>
+                    </ul>
+                    <li>운전자정보</li>
+                    <ul>
+                      <li>운전자이름: {{taxiDriver}}</li>
+                      <li>운전자나이: </li>
+                    </ul>
+                  </ol>
+                </p>
+                </h3>
+
+            </aside>
+
+        </div>
+        <hr/>
+        <div>
+            <h2>Payment System Status </h2>
+            <p>Payment is completed</p>
+            <figure class="left">
+                <img src="{%static "image/payment.jpg"%}"  width ="400" height="300">
+                <figcaption>택시실내사진</figcaption>
+            </figure>
+          <aside class="right" id="border1">
+                <h3>
+                  <p>
+                  <ol>
+                    <li>카드정보</li>
+                    <ul>
+                      <li>카드회사: </li>
+                      <li>카드번호: </li>
+                    </ul>
+                    <li>사용자정보</li>
+                    <ul>
+                      <li>사용자이름: </li>
+                      <li>사용자나이: </li>
+                    </ul>
+                  </ol>
+                </p>
+                </h3>
+
+            </aside>
+        </div>
+        <hr/>
+        <footer>
+           <div id="copyright">
+             <h3>published date: 2019.07.15</h3>
+           </div>
+           <div id="SNS">
+               <a href="https://www.hyundai.com/kr/ko/main.html" target="_blank">
+                   <img src="{%static "image/hyundai.jpg"%}" height="32" alt="hyundai">
+               </a>
+               <a href="https://www.police.go.kr/main.html" target="_blank">
+                   <img src="{%static "image/police.jpg"%}" height="32" alt="police">
+               </a>
+               <a href="https://www.sexoffender.go.kr/" target="_blank">
+                   <img src="{%static "image/sexoffender.jpg"%}" height="32" alt="sexoffender">
+               </a>
+
+            </div>
+        </footer>
+
+      </body>
+
+
+            <script language="javascript">
+
+            var dt = new Date();
+            document.getElementById("datetime").innerHTML = dt.toLocaleTimeString();
+            </script>
+</html>
