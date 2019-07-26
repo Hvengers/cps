@@ -2,7 +2,7 @@ from django.http import HttpResponse    #통신위함
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 
-@csrf_exempt
+#@csrf_exempt
 
 def upload(req):
     if req.method == 'POST':
@@ -23,8 +23,12 @@ def upload(req):
 #    elif req.method == 'GET':
 #        file_loc='blog/static/info'
 #        fp = open('%s/%s' % (file_loc,'info.txt') , 'w')
-#        fp.write(req.GET.get['taxiNumber'])
-#        fp.write(req.GET.get['taxiDriver'])
+        #a=req.GET.get['taxiNumber']+'\n'
+        #b=req.GET.get['taxiDriver']+'\n'
+        #fp.write(a)
+        #fp.write(b)
+#        fp.write(req.GET['taxiNumber'])
+#        fp.write(req.GET['taxiDriver'])
 #        fp.close()
 #        render(req, 'blog/post_list.html',{'taxiNumber':req.GET.get['taxiNumber'], 'taxiDriver':req.GET.get['taxiDriver']})
 
