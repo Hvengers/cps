@@ -1,14 +1,7 @@
-<!--
-<html>
-    <head><title>Upload Test</title></head>
-    <body>
-
-    </body>
-</html>
--->
 {% load static %}
 <html>
     <head>
+      <meta http-equiv="refresh" content="5" />
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -28,7 +21,7 @@
     </head>
     <body>
 
-      <form action="/upload/"
+      <form action=""
             method="post"
             enctype="multipart/form-data">
           File:
@@ -37,6 +30,7 @@
                  id="id_file" />
           <input type="submit" value="UPLOAD" />
       </form>
+
       <div>
             <h1>Hvengers</h1>
 
@@ -47,7 +41,7 @@
             <h2>Taxi Status</h2>
             <p>Taxi contenta</p>
             <figure class="left">
-                <img src="{% static filename %}"  width ="400" height="300">
+                <img src="{% static "image/inner.jpg" %}"  width ="400" height="300">
                 <figcaption>택시실내사진</figcaption>
             </figure>
           <aside class="right" id="border1">

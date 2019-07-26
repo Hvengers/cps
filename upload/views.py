@@ -10,12 +10,12 @@ def upload(req):
             file = req.FILES['file']
             filename = file._name
             file_loc='blog/static/image'
-            fp = open('%s/%s' % (file_loc, filename) , 'wb')
+            fp = open('%s/%s' % (file_loc, 'inner.jpg') , 'wb')
             for chunk in file.chunks():
                 fp.write(chunk)
             #print(fp)
             fp.close()
             transfer_file='image/'+filename
-    return render(req, 'blog/post_list.html',{'filename':transfer_file})
+            return render(req, 'blog/post_list.html',{})
     #return render(req, 'blog/post_list.html',{'taxiNumber':req.GET['taxiNumber'], 'taxiDriver':req.GET['taxiDriver']})
-    #return HttpResponse('Failed to Upload File')
+    return render(req,'blog/post_list.html',{})
