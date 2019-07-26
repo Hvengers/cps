@@ -6,6 +6,7 @@ from django.shortcuts import render
 
 def upload(req):
     if req.method == 'POST':
+        #print("통신 되긴하는데 좀,,,,")
         if 'file' in req.FILES:
             file = req.FILES['file']
             filename = file._name
@@ -18,4 +19,20 @@ def upload(req):
             transfer_file='image/'+filename
             return render(req, 'blog/post_list.html',{})
     #return render(req, 'blog/post_list.html',{'taxiNumber':req.GET['taxiNumber'], 'taxiDriver':req.GET['taxiDriver']})
-    return render(req,'blog/post_list.html',{})
+
+#    elif req.method == 'GET':
+#        file_loc='blog/static/info'
+#        fp = open('%s/%s' % (file_loc,'info.txt') , 'w')
+#        fp.write(req.GET.get['taxiNumber'])
+#        fp.write(req.GET.get['taxiDriver'])
+#        fp.close()
+#        render(req, 'blog/post_list.html',{'taxiNumber':req.GET.get['taxiNumber'], 'taxiDriver':req.GET.get['taxiDriver']})
+
+    else :
+        file_loc='blog/static/info'
+        fp=open("%s/%s" %(file_loc,'info.txt'),'r')
+        taxiNumber=fp.readline()
+        taxiDriver=fp.readline()
+        fp.close()
+
+    return render(req,'blog/post_list.html',{'taxiNumber':taxiNumber, 'taxiDriver':taxiDriver})
