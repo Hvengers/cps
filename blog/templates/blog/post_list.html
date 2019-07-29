@@ -20,6 +20,9 @@
     </style>
     </head>
     <body>
+      <form action='' method='get'>
+        <input name='status' type='submit' value='safe'>
+      </form>
 <!--
       <form action=""
             method="post"
@@ -50,13 +53,15 @@
                   <ol>
                     <li>택시정보</li>
                     <ul>
-                      <li>택시회사: </li>
+                      <li>신고코드:{{taxiReportCode}}</li>
+                      <li>택시위치:{{taxiGPS}}</li>
                       <li>택시번호:{{taxiNumber}} </li>
+                      <li>운전자이름:{{taxiDriver}}</li>
                     </ul>
-                    <li>운전자정보</li>
+                    <li>범죄자정보</li>
                     <ul>
-                      <li>운전자이름: {{taxiDriver}}</li>
-                      <li>운전자나이: </li>
+                      <li>수배코드:{{criminalCode}}</li>
+                      <li>범죄자이름:{{criminalName}}</li>
                     </ul>
                   </ol>
                 </p>
@@ -77,15 +82,11 @@
                 <h3>
                   <p>
                   <ol>
-                    <li>카드정보</li>
+                    <li>결제정보</li>
                     <ul>
-                      <li>카드회사: </li>
-                      <li>카드번호: </li>
-                    </ul>
-                    <li>사용자정보</li>
-                    <ul>
-                      <li>사용자이름: </li>
-                      <li>사용자나이: </li>
+                      <li>지불코드:{{payCode}} </li>
+                      <li>지불정보:{{payInfo}} </li>
+                      <li>지불금액:{{paySum}} </li>
                     </ul>
                   </ol>
                 </p>
