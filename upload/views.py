@@ -15,6 +15,8 @@ def upload(req):
         #return render(req, 'blog/post_list.html',{})
 
 #    if req.method == 'POST':
+#    for afile in req.FILES.getlist('files'):
+#        File(file=afile, files=test).save()
     '''이미지 파일처리'''
     if 'file' in req.FILES:
         file = req.FILES['file']
