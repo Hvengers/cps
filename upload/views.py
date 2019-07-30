@@ -27,7 +27,7 @@ def upload(req):
             fp = open('%s/%s' % (file_loc, 'inner.jpg') , 'wb')
             #print("done")
         elif filename == 'CriminalPhoto.jpg':
-            fp = open('%s/%s' % (file_loc, 'criminal.jpg') , 'wb')
+            fp = open('%s/%s' % (file_loc, 'crime.jpg') , 'wb')
 
         for chunk in file.chunks():
             fp.write(chunk)
