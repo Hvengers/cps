@@ -7,10 +7,11 @@ from django.shortcuts import render
 def upload(req):
 
     flag_safe=0
-    data_dic={}
     '''safe한 경우 처리 플래그'''
-    if 'status' in req.GET:
+    if 'safe' in req.GET:
         flag_safe=1
+    if 'unsafe' in req.GET:
+        flag_safe=0
         #return render(req, 'blog/post_list.html',{})
 
 #    if req.method == 'POST':
@@ -19,13 +20,20 @@ def upload(req):
         file = req.FILES['file']
         filename = file._name
         file_loc='blog/static/image'
-        fp = open('%s/%s' % (file_loc, 'inner.jpg') , 'wb')
+        #fp = open('%s/%s' % (file_loc, 'inner.jpg') , 'wb')
+        #print(filename)
+        '''실내인지 범죄자인지 사진 구분'''
+        if filename == 'taxiInternalPhoto.jpg':
+            fp = open('%s/%s' % (file_loc, 'inner.jpg') , 'wb')
+            #print("done")
+        elif filename == 'CriminalPhoto.jpg':
+            fp = open('%s/%s' % (file_loc, 'criminal.jpg') , 'wb')
 
         for chunk in file.chunks():
             fp.write(chunk)
 
         fp.close()
-        transfer_file='image/'+filename
+#        transfer_file='image/'+filename
 
 #    elif req.method == 'GET':
     file_loc='blog/static/info'
@@ -36,13 +44,13 @@ def upload(req):
 
 
     '''template으로 보낼 딕셔너리 초기화'''
-    #data_dic={}
+    data_dic={}
     '''택시 정보'''
-    if 'taxiNumber' in req.GET:     #하나만 들어오진 않고, 무조건 다 들어오니 하나만 체크하면 됨.
-        taxiNumber=req.GET['taxiNumber']
-        taxiDriver=req.GET['taxiDriver']
-        taxiGPS=req.GET['taxiGPS']
-        taxiReportCode=req.GET['taxiReportCode']
+    if 'taxiNumber' in req.POST:     #하나만 들어오진 않고, 무조건 다 들어오니 하나만 체크하면 됨.
+        taxiNumber=req.POST['taxiNumber']
+        taxiDriver=req.POST['taxiDriver']
+        taxiGPS=req.POST['taxiGPS']
+        taxiReportCode=req.POST['taxiReportCode']
 
         #print("always get")
         fp_taxi.write(taxiNumber)
@@ -61,9 +69,9 @@ def upload(req):
         taxiReportCode=fp_taxi.readline()
 
     '''범죄자 정보'''
-    if 'criminalCode' in req.GET:
-        criminalCode=req.GET['criminalCode']
-        criminalName=req.GET['criminalName']
+    if 'criminalCode' in req.POST:
+        criminalCode=req.POST['criminalCode']
+        criminalName=req.POST['criminalName']
         fp_crime.write(criminalCode)
         fp_crime.write('\n')
         fp_crime.write(criminalName)
@@ -73,10 +81,10 @@ def upload(req):
         criminalCode=fp_crime.readline()
         criminalName=fp_crime.readline()
     '''결제 정보'''
-    if 'payCode' in req.GET:
-        payCode=req.GET['payCode']
-        payInfo=req.GET['payInfo']
-        paySum=req.GET['paySum']
+    if 'payCode' in req.POST:
+        payCode=req.POST['payCode']
+        payInfo=req.POST['payInfo']
+        paySum=req.POST['paySum']
 
         fp_pay.write(payCode)
         fp_pay.write('\n')
@@ -93,6 +101,7 @@ def upload(req):
     fp_crime.close()
     fp_pay.close()
 
+    '''safa하지 않을 경우(unsafe)에 딕셔너리에 추가하여 넘겨줘야함'''
     if flag_safe==0:
         data_dic['taxiNumber']=taxiNumber
         data_dic['taxiDriver']=taxiDriver
@@ -103,8 +112,11 @@ def upload(req):
         data_dic['payCode']=payCode
         data_dic['payInfo']=payInfo
         data_dic['paySum']=paySum
-    else :
+
+        '''safe일 경우'''
+    else:
         data_dic={}
+
     return render(req, 'blog/post_list.html',data_dic)
 
     #return render(req,'blog/post_list.html',{})

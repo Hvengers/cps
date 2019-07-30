@@ -1,55 +1,54 @@
-{% load static %}
+{%load static %}
 <html>
     <head>
-      <meta http-equiv="refresh" content="3" />
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-
-
+        <meta http-equiv="refresh" content="3" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" type="text/css" href="style-layout.css"/>
     <title>Hvengers</title>
     <style type= "text/css">
+        header {height: 120px; background-color:#002266;}
+        hgroup h1 {color: white; padding: 10px 0 0 10px;}
+        hgroup h4 {color: white; padding: 0 0 0 10px;}
+        #wrapper {width: 700px;}
+        #border1{margin:0 0 0 550px ; width: 30%; height: 300px;padding: 5px; border:medium double #002266; border-radius: 10px;}
+        footer {height: 70px; background-color:#002266;}
+        footer h4 {color: white; padding: 0 0 0 10px;}
+        footer #SNS {margin:10px 20px 0 0 ; float:right;}
+        footer #copyright {margin:0 0 0 10px; float:left;}
+        .left { float: left;}
+        .right { float:right;}
+        .my-hr { border:0; height: 2px; background-color:#002266;}
 
-        #border{margin-left: 80%; left: 10%; width: 60%; padding: 5px; border:medium double black; border-radius: 10px;}
-        #border1{float: right; left: 10%; width: 60%; padding: 5px; border:medium double black; border-radius: 10px;}
     </style>
     </head>
     <body>
-      <form action='' method='get'>
-        <input name='status' type='submit' value='safe'>
-      </form>
-<!--
-      <form action=""
-            method="post"
-            enctype="multipart/form-data">
-          File:
-          <input type="file"
-                 name="file"
-                 id="id_file" />
-          <input type="submit" value="UPLOAD" />
-      </form>
--->
-      <div>
-            <h1>Hvengers</h1>
+      <header>
+          <hgroup>
+              <h1>Crime Prevention System</h1>
+              <br>
+              <h4>Current time: <span id="datetime"></span></h4>
 
-            <p>Current time: <span id="datetime"></span></p>
-        </div>
-        <hr/>
+          </hgroup>
+        </header>
+
         <div>
             <h2>Taxi Status</h2>
-            <p>Taxi contenta</p>
+            <p>Taxi content</p>
+            <form action='' method='get'>
+              <input name='safe' type='submit' value='safe'>
+              <input name='unsafe' type='submit' value='unsafe'>
             <figure class="left">
-                <img src="{% static "image/inner.jpg" %}"  width ="400" height="300">
-                <figcaption>택시실내사진</figcaption>
+                <img src="{%static "image/inner.jpg"%}"  width ="550" height="300" alt = "택시실내사진">
+                <figcaption style="text-align:center;"><h3>Taxi real-time interior</h3></figcaption>
             </figure>
-          <aside class="right" id="border1">
-                <h3>
+            <figure class="right">
+                <img src="{%static "image/crime.jpg"%}" alt ="범죄자사진"  width ="300" height="300">
+                <figcaption style="text-align:center;"><h3>Criminal Face</h3></figcaption>
+            </figure>
+          <div id="border1">
+                <h4>
                   <p>
+                    <br>
                   <ol>
                     <li>택시정보</li>
                     <ul>
@@ -65,22 +64,27 @@
                     </ul>
                   </ol>
                 </p>
-                </h3>
+              </h4>
 
-            </aside>
 
+          </div>
         </div>
-        <hr/>
+        <br><br>
+
+
         <div>
+
+          <hr class="my-hr">
             <h2>Payment System Status </h2>
-            <p>Payment is completed</p>
+            <p>Auto-payment service</p>
             <figure class="left">
-                <img src="{%static "image/payment.jpg"%}"  width ="400" height="300">
-                <figcaption>택시실내사진</figcaption>
+                <img src="{%static "image/payment.jpg"%}"  width ="550" height="300" alt = "결제완료사진">
+                <figcaption style="text-align:center;"><h3>The progress of auto-payment service</h3></figcaption>
             </figure>
-          <aside class="right" id="border1">
-                <h3>
+          <div id="border1">
+                <h4>
                   <p>
+                    <br>
                   <ol>
                     <li>결제정보</li>
                     <ul>
@@ -90,24 +94,24 @@
                     </ul>
                   </ol>
                 </p>
-                </h3>
-
-            </aside>
+              </h4>
+            </div>
         </div>
-        <hr/>
+        <br><br><br>
+  <!--      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
         <footer>
            <div id="copyright">
-             <h3>published date: 2019.07.15</h3>
+             <h4>published date: 2019.07.15</h4>
            </div>
            <div id="SNS">
                <a href="https://www.hyundai.com/kr/ko/main.html" target="_blank">
-                   <img src="{%static "image/hyundai.jpg"%}" height="32" alt="hyundai">
+                   <img src="{%static "image/hyundai.jpg"%}" height="40" alt="hyundai">
                </a>
                <a href="https://www.police.go.kr/main.html" target="_blank">
-                   <img src="{%static "image/police.jpg"%}" height="32" alt="police">
+                   <img src="{%static "image/police.jpg"%}" height="40" alt="police">
                </a>
                <a href="https://www.sexoffender.go.kr/" target="_blank">
-                   <img src="{%static "image/sexoffender.jpg"%}" height="32" alt="sexoffender">
+                   <img src="{%static "image/sexoffender.jpg"%}" height="40" alt="sexoffender">
                </a>
 
             </div>
@@ -115,9 +119,27 @@
 
       </body>
 
-
             <script language="javascript">
-
+            /*
+            $(function () {
+              if (navigator.geolocation) { // GPS를 지원하면
+                navigator.geolocation.getCurrentPosition(function(position) {
+                  $('#latitude').html(position.coords.latitude);     // 위도
+                  $('#longitude').html(position.coords.longitude); // 경도
+                  //alert(position.coords.latitude + ' ' + position.coords.longitude);
+                }, function(error) {
+                    console.error(error);
+                }, {
+                    enableHighAccuracy: false,
+                    maximumAge: 0,
+                    timeout: Infinity
+                });
+              } else {
+                alert('GPS를 지원하지 않습니다');
+              }
+            });
+            //getLocation();
+            */
             var dt = new Date();
             document.getElementById("datetime").innerHTML = dt.toLocaleTimeString();
             </script>
