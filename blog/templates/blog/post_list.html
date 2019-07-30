@@ -1,7 +1,17 @@
 {%load static %}
 <html>
     <head>
+    <!--  <form action=""
+            method="post"
+            enctype="multipart/form-data">
+          File:
+          <input type="file"
+                 name="file"
+                 id="id_file" />
+          <input type="submit" value="UPLOAD" />
+      </form>-->
         <!-- <meta http-equiv="refresh" content="10" /> -->
+        <meta http-equiv="refresh" content="3" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <title>Hvengers</title>
@@ -34,9 +44,10 @@
         <div>
             <h2>Taxi Status</h2>
             <p>Taxi content</p>
-            <form action='' method='get'>
+            <form action='' method='post'>
+              <input name='refresh' type='submit' value='refresh'>
               <input name='safe' type='submit' value='safe'>
-              <input name='unsafe' type='submit' value='unsafe'>
+            </form>
             <figure class="left">
                 <img src="{%static "image/inner.jpg"%}"  width ="550" height="300" alt = "택시실내사진">
                 <figcaption style="text-align:center;"><h3>Taxi real-time interior</h3></figcaption>
