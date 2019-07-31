@@ -31,6 +31,21 @@ def upload(req):
         dest=file_loc+'crime.jpg'
         shutil.copy(src,dest)
 
+        '''앱에서 받은 정보 초기화'''
+        file_loc='blog/static/info'
+        fp_taxi = open('%s/%s' % (file_loc,'taxi_info.txt') , 'w+',encoding='UTF8')
+        fp_crime = open('%s/%s' % (file_loc,'crime_info.txt') , 'w+',encoding='UTF8')
+        fp_pay = open('%s/%s' % (file_loc,'pay_info.txt') , 'w+',encoding='UTF8')
+
+        #정보 초기화
+        fp_taxi.write(' ')
+        fp_crime.write(' ')
+        fp_pay.write(' ')
+
+        fp_taxi.close()
+        fp_crime.close()
+        fp_pay.close()
+
         return render(req, 'blog/post_list.html',{})
 
         '''refresh하면 정상적으로 작동'''
@@ -58,7 +73,7 @@ def upload(req):
         fp_taxi = open('%s/%s' % (file_loc,'taxi_info.txt') , 'r+',encoding='UTF8')
         fp_crime = open('%s/%s' % (file_loc,'crime_info.txt') , 'r+',encoding='UTF8')
         fp_pay = open('%s/%s' % (file_loc,'pay_info.txt') , 'r+',encoding='UTF8')
-        # w+로 열면 파일 내용 지워 버림. r+가 적당. 모두 파일 스트림 시작에 위칠
+        # w+로 읽기전에 열면 파일 내용 지워 버림. r+가 적당. 모두 파일 스트림 시작에 위치
 
 
         '''template으로 보낼 딕셔너리 초기화'''
