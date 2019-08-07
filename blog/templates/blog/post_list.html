@@ -1,117 +1,131 @@
-{%load static %}
+<!--{%load static %}-->
 <html>
     <head>
-    <!--  <form action=""
-            method="post"
-            enctype="multipart/form-data">
-          File:
-          <input type="file"
-                 name="file"
-                 id="id_file" />
-          <input type="submit" value="UPLOAD" />
-      </form>-->
-        <!-- <meta http-equiv="refresh" content="10" /> -->
         <meta http-equiv="refresh" content="3" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <title>Hvengers</title>
     <style type= "text/css">
-        header {height: 120px; background-color:#002266;}
+        header {height: 160px; background-color:#002266;}
         hgroup h1 {color: white; padding: 10px 0 0 10px;}
         hgroup h4 {color: white; padding: 0 0 0 10px;}
         #wrapper {width: 700px;}
-        #border1{margin:0 0 0 550px ; width: 30%; height: 300px;padding: 5px; border:medium double #002266; border-radius: 10px;}
-        footer {height: 70px; background-color:#002266;}
+        #border1{margin:0 0 0 630px ; width: 50%; height: 300px;padding: 5px; border:medium double #002266; border-radius: 10px;}
+        #border{margin:0 0 0 630px ; width: 50%; height: 320px;padding: 5px; border:medium double #002266; border-radius: 10px;}
+        footer {height: 70px; background-color:#002266; position:absolute;  width:100%;}
         footer h4 {color: white; padding: 0 0 0 10px;}
         footer #SNS {margin:10px 20px 0 0 ; float:right;}
         footer #copyright {margin:0 0 0 10px; float:left;}
-        .left { float: left;}
+        .left {margin:0 0 0 30px; float:left;}
         .right { float:right;}
         .my-hr { border:0; height: 2px; background-color:#002266;}
-
+        #content{position: absolute; top:49%;height: 50px; margin-top: 70px; margin-left: 20px;}
+        #content1{position: absolute; top:90%;height: 50px; margin-top: 70px; margin-left: 20px;}
+        #content2{position: absolute; top:14%;height: 50px; margin-top: 70px; margin-left: 20px;}
+        #sform {position: absolute; left:40%;}
     </style>
     </head>
     <body>
       <header>
           <hgroup>
-              <h1>Crime Prevention System</h1>
               <br>
-              <h4>Current time: <span id="datetime"></span></h4>
-
+            <img src="{%static "image/hvengers.png"%}"  width ="170" height="120" alt = alt.png align="right">
+              <h1>&nbsp;Crime Prevention System</h1>
+              <h4>&nbsp;Current time: <span id="datetime"></span></h4>
           </hgroup>
         </header>
 
         <div>
-            <h2>Taxi Status</h2>
-            <p>Taxi content</p>
-            <form action='' method='post'>
-              <input name='refresh' type='submit' value='refresh'>
-              <input name='safe' type='submit' value='safe'>
+            <h2>&nbsp;&nbsp;&nbsp;&nbsp;Taxi Status</h2>
+
             </form>
             <figure class="left">
-                <img src="{%static "image/inner.jpg"%}"  width ="550" height="300" alt = "택시실내사진">
-                <figcaption style="text-align:center;"><h3>Taxi real-time interior</h3></figcaption>
+              <img src="{%static "image/inner.jpg"%}"  width ="550" height="300" alt = "택시실내사진" margin-left:20px;>
+              <figcaption style="text-align:center;"><h3>Taxi real-time interior</h3></figcaption>
             </figure>
-            <figure class="right">
-                <img src="{%static "image/crime.jpg"%}" alt ="범죄자사진"  width ="300" height="300">
-                <figcaption style="text-align:center;"><h3>Criminal Face</h3></figcaption>
-            </figure>
+
           <div id="border1">
-                <h4>
-                  <p>
-                    <br>
-                  <ol>
-                    <li>택시정보</li>
+       <!--       <div id="content2"> -->
+                    <h3><b>&nbsp;&nbsp;Taxi Imformation</b></h3>
+                    <h3>
+                      <blockquote>
                     <ul>
-                      <li>신고코드:{{taxiReportCode}}</li>
-                      <li>택시위치:{{taxiGPS}}</li>
-                      <li>택시번호:{{taxiNumber}} </li>
-                      <li>운전자이름:{{taxiDriver}}</li>
+                      <li>&nbsp;taxiReportCode: {{taxiReportCode}}</li><br>
+                      <li>&nbsp;taxiLocation: {{taxiGPS}}</li><br>
+                      <li>&nbsp;taxiNumber: {{taxiNumber}} </li><br>
+                      <li>&nbsp;taxiDriver: {{taxiDriver}}</li><br>
                     </ul>
-                    <li>범죄자정보</li>
-                    <ul>
-                      <li>수배코드:{{criminalCode}}</li>
-                      <li>범죄자이름:{{criminalName}}</li>
-                    </ul>
-                  </ol>
-                </p>
-              </h4>
-
-
+                  </blockquote>
+                </h3>
           </div>
         </div>
-        <br><br>
 
 
-        <div>
+        <br><br><br><br>
 
-          <hr class="my-hr">
-            <h2>Payment System Status </h2>
-            <p>Auto-payment service</p>
-            <figure class="left">
-                <img src="{%static "image/payment.jpg"%}"  width ="550" height="300" alt = "결제완료사진">
-                <figcaption style="text-align:center;"><h3>The progress of auto-payment service</h3></figcaption>
-            </figure>
-          <div id="border1">
-                <h4>
-                  <p>
-                    <br>
-                  <ol>
-                    <li>결제정보</li>
-                    <ul>
-                      <li>지불코드:{{payCode}} </li>
-                      <li>지불정보:{{payInfo}} </li>
-                      <li>지불금액:{{paySum}} </li>
-                    </ul>
-                  </ol>
-                </p>
-              </h4>
+
+          <div>
+              <h2>&nbsp;&nbsp;&nbsp;&nbsp;Criminal Status</h2>
+              <figure class="left">
+                <img src="{%static "image/crime.jpg"%}" alt ="범죄자사진"  width ="550" height="300" margin-left: 20px;>
+                <figcaption style="text-align:center;"><h3>Criminal Face</h3></figcaption>
+              </figure>
+            <div id="border">
+          <!--      <div id="content"> -->
+                  <h3><b>&nbsp;&nbsp;Criminal Information</b></h3>
+                      <h3>
+                        <blockquote>
+                      <ul>
+                        <li>&nbsp;criminalCode: {{criminalCode}}</li><br>
+                        <li>&nbsp;criminalName: {{criminalName}}</li><br>
+                        <li>&nbsp;dateofBirth: {{criminalBirth}}</li><br>
+                        <li>&nbsp;gender: {{criminalGender}}</li><br>
+                        <li>&nbsp;height: {{criminalHeight}}</li><br>
+                        <li>&nbsp;address:{{criminalAddress}}</li>
+                      </ul>
+                      </blockquote>
+                      </h3>
+                    </div>
             </div>
-        </div>
-        <br><br><br>
+
+          <br><br><br><br>
+          <div id ="sform">
+          <form action='' method='post'>
+          <!--          <input name='refresh' type='submit' value='refresh'> -->
+            <input name='safe' type='submit' value='safe' style="width:200px; height:80px;font-size:50px;" >
+
+            </div>
+
   <!--      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
+    <br><br><br><br><br><br>
+  <hr class="my-hr">
+  <div>
+    <h2>&nbsp;&nbsp;&nbsp;&nbsp;Payment System Status </h2>
+    <figure class="left">
+      <img src="{%static "image/payment.jpg"%}"  width ="550" height="300" alt = "결제완료사진">
+      <figcaption style="text-align:center;"><h3>The progress of auto-payment service</h3></figcaption>
+        </figure>
+        <div id="border1">
+     <!--     <div id="content1"> -->
+            <h3><b>&nbsp;&nbsp;Payment Imformation</b></h3>
+              <h3>
+                <blockquote>
+                  <ul>
+                    <li>&nbsp;payCode: {{payCode}}</li><br>
+                    <li>&nbsp;payInfo: {{payInfo}}</li><br>
+                    <li>&nbsp;paySum: {{paySum}}</li><br>
+                  </ul>
+                </blockquote>
+              </h3>
+            </div>
+          </div>
+
+
+  <br><br><br><br>
+
         <footer>
            <div id="copyright">
+               <br>
              <h4>published date: 2019.07.15</h4>
            </div>
            <div id="SNS">
@@ -119,24 +133,22 @@
                    <img src="{%static "image/hyundai.jpg"%}" height="40" alt="hyundai">
                </a>
                <a href="https://www.police.go.kr/main.html" target="_blank">
-                   <img src="{%static "image/police.jpg"%}" height="40" alt="police">
+                    <img src="{%static "image/police.jpg"%}" height="40" alt="police">
                </a>
                <a href="https://www.sexoffender.go.kr/" target="_blank">
                    <img src="{%static "image/sexoffender.jpg"%}" height="40" alt="sexoffender">
                </a>
-
             </div>
         </footer>
-
       </body>
 
             <script language="javascript">
             /*
             $(function () {
-              if (navigator.geolocation) { // GPS를 지원하면
+              if (navigator.geolocation) { // GPS�� �����ϸ�
                 navigator.geolocation.getCurrentPosition(function(position) {
-                  $('#latitude').html(position.coords.latitude);     // 위도
-                  $('#longitude').html(position.coords.longitude); // 경도
+                  $('#latitude').html(position.coords.latitude);     // ����
+                  $('#longitude').html(position.coords.longitude); // �浵
                   //alert(position.coords.latitude + ' ' + position.coords.longitude);
                 }, function(error) {
                     console.error(error);
@@ -146,11 +158,18 @@
                     timeout: Infinity
                 });
               } else {
-                alert('GPS를 지원하지 않습니다');
+                alert('GPS�� �������� �ʽ��ϴ�');
               }
             });
             //getLocation();
             */
+            /*function button_click(){
+              var express = require('express');
+              var app = express();
+              app.get('/', function(req,res) {
+                res.send('Hello World!');
+              });
+            }*/
             var dt = new Date();
             document.getElementById("datetime").innerHTML = dt.toLocaleTimeString();
             </script>
