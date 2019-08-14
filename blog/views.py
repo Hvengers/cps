@@ -4,8 +4,8 @@ from .models import Post
 from datetime import datetime
 from django.http import HttpResponse    #통신위함
 from django.views.decorators.csrf import csrf_exempt
-from blog.models import Snippet
-from blog.serializers import SnippetSerializer
+from .models import Snippet
+from .serializers import SnippetSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -35,9 +35,10 @@ def snippet_list(request):
     코드 조각을 모두 보여주거나 새 코드 조각을 만듭니다.
     """
     if request.method == 'GET':
-        snippets = Snippet.objects.all()
-        serializer = SnippetSerializer(snippets, many=True)
+        snippet = Snippet.objects.all()
+        serializer = SnippetSerializer(snippet, many=True)
         return JSONResponse(serializer.data)
+
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
@@ -47,14 +48,17 @@ def snippet_list(request):
             return JSONResponse(serializer.data, status=201)
         return JSONResponse(serializer.errors, status=400)
 
+
 @csrf_exempt
 def snippet_detail(request, pk):
     """
     코드 조각 조회, 업데이트, 삭제
     """
+
     try:
         snippet = Snippet.objects.get(pk=pk)
     except Snippet.DoesNotExist:
+
         return HttpResponse(status=404)
 
     if request.method == 'GET':
