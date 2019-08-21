@@ -1,20 +1,22 @@
 <!--{%load static %}-->
-<html>
+<html lang="ko">
     <head>
         <meta http-equiv="refresh" content="3" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <meta charset="utf-8">
+
     <title>Hvengers</title>
     <style type= "text/css">
         header {height: 160px; background-color:#002266;}
         hgroup h1 {color: white; padding: 10px 0 0 10px;}
         hgroup h4 {color: white; padding: 0 0 0 10px;}
         #wrapper {width: 700px;}
-        #border1{margin:0 0 0 630px ; width: 50%; height: 300px;padding: 5px; border:medium double #002266; border-radius: 10px;}
-        #border{margin:0 0 0 630px ; width: 50%; height: 320px;padding: 5px; border:medium double #002266; border-radius: 10px;}
-        footer {height: 70px; background-color:#002266; position:absolute;  width:100%;}
+        #border1{margin:0 0 0 630px ; width: 30%; height: 300px;padding: 5px; border:medium double #002266; border-radius: 10px;}
+        #border{margin:0 0 0 630px ; width: 30%; height: 320px;padding: 5px; border:medium double #002266; border-radius: 10px;}
+        footer {height: 85px; background-color:#002266; position:absolute;  width:100%;}
         footer h4 {color: white; padding: 0 0 0 10px;}
-        footer #SNS {margin:10px 20px 0 0 ; float:right;}
+        footer #SNS {margin:20px 20px 0 0 ; float:right;}
         footer #copyright {margin:0 0 0 10px; float:left;}
         .left {margin:0 0 0 30px; float:left;}
         .right { float:right;}
@@ -23,17 +25,56 @@
         #content1{position: absolute; top:90%;height: 50px; margin-top: 70px; margin-left: 20px;}
         #content2{position: absolute; top:14%;height: 50px; margin-top: 70px; margin-left: 20px;}
         #sform {position: absolute; left:40%;}
+
     </style>
     </head>
     <body>
       <header>
           <hgroup>
-              <br>
+            <br>
             <img src="{%static "image/hvengers.png"%}"  width ="170" height="120" alt = alt.png align="right">
+            <img src="{%static "image/police_.png"%}"  width ="150" height="95" alt = alt.png align="right">
               <h1>&nbsp;Crime Prevention System</h1>
-              <h4>&nbsp;현재시간: <span id="datetime"></span></h4>
+              <h4><br>&nbsp;&nbsp;&nbsp;<script>
+                var d = new Date();
+                var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일";
+                var currentTime = d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초";
+                document.write("현재 날짜 : " + currentDate +"&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;현재 시간 : " + currentTime);
+              </script></h4>
+
           </hgroup>
         </header>
+        <br>
+
+        <div id="map" style="width:21%;height:21%; float:right; margin:65px 50px 0 0;"></div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2e408e08441de14532411f36bef1d337&libraries=services"></script>
+        <script>
+
+		if (!isNaN(parseInt({{taxiLatitude}})))
+		{
+		    var container = document.getElementById('map');
+		    var options = {
+			    center: new kakao.maps.LatLng(parseFloat({{taxiLatitude}}),parseFloat({{taxiLongitude}})),
+			    level: 3
+		    };
+
+		    var map = new kakao.maps.Map(container, options);
+
+
+
+            var markerPosition  = new kakao.maps.LatLng(parseFloat({{taxiLatitude}}),parseFloat({{taxiLongitude}}));
+
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+
+            marker.setMap(map);
+
+
+
+
+		}
+	    </script>
 
         <div>
             <h2>&nbsp;&nbsp;&nbsp;&nbsp;택시상태</h2>
@@ -41,7 +82,7 @@
             </form>
             <figure class="left">
               <img src="{%static "image/inner.jpg"%}"  width ="550" height="300" alt = "택시실내사진" margin-left:20px;>
-              <figcaption style="text-align:center;"><h3>택시 실내사진</h3></figcaption>
+              <figcaption style="text-align:center;"><h3><strong>택시 실내사진</strong></h3></figcaption>
             </figure>
 
           <div id="border1">
@@ -50,15 +91,17 @@
                     <h3>
                       <blockquote>
                     <ul>
-                      <li>&nbsp;신고 코드: {{taxiReportCode}}</li><br>
-                      <li>&nbsp;택시 위치정보: {{taxiGPS}}</li><br>
+                      <li>&nbsp;신고 내용: {{taxiReportCode}}</li><br>
                       <li>&nbsp;택시 번호: {{taxiNumber}} </li><br>
                       <li>&nbsp;운전사 이름: {{taxiDriver}}</li><br>
+                      <li>&nbsp;택시 위치정보: {{taxiGPS}}</li><br>
+
                     </ul>
                   </blockquote>
                 </h3>
           </div>
         </div>
+
 
 
         <br><br><br><br>
@@ -68,7 +111,7 @@
               <h2>&nbsp;&nbsp;&nbsp;&nbsp;범죄자상태</h2>
               <figure class="left">
                 <img src="{%static "image/crime.jpg"%}" alt ="범죄자사진"  width ="550" height="300" margin-left: 20px;>
-                <figcaption style="text-align:center;"><h3>범죄자사진</h3></figcaption>
+                <figcaption style="text-align:center;"><h3><strong>범죄자사진</strong></h3></figcaption>
               </figure>
             <div id="border">
           <!--      <div id="content"> -->
@@ -76,7 +119,7 @@
                       <h3>
                         <blockquote>
                       <ul>
-                        <li>&nbsp;수배코드: {{criminalCode}}</li><br>
+                        <li>&nbsp;수배 내용: {{criminalCode}}</li><br>
                         <li>&nbsp;범죄자 이름: {{criminalName}}</li><br>
                         <li>&nbsp;범죄자 생년월일: {{criminalBirth}}</li><br>
                         <li>&nbsp;범죄자 성별: {{criminalGender}}</li><br>
@@ -91,7 +134,7 @@
           <br><br><br><br>
           <div id ="sform">
           <form action='' method='post'>
-          <!--          <input name='safe' type='submit' value='safe'> -->
+
             <input name='safe' type='submit' value='상황종료' style="width:230px; height:90px;font-size:50px;" >
 
             </div>
@@ -103,7 +146,7 @@
     <h2>&nbsp;&nbsp;&nbsp;&nbsp;결제상태</h2>
     <figure class="left">
       <img src="{%static "image/payment.jpg"%}"  width ="550" height="300" alt = "결제완료사진">
-      <figcaption style="text-align:center;"><h3>결제진행상황</h3></figcaption>
+      <figcaption style="text-align:center;"><h3><strong>결제진행상황</strong></h3></figcaption>
         </figure>
         <div id="border1">
      <!--     <div id="content1"> -->
@@ -122,7 +165,7 @@
           <br><br><br><br>
           <div id ="sform">
           <form action='' method='post'>
-          <!--          <input name='refresh' type='submit' value='refresh'> -->
+
             <input name='reset' type='submit' value='초기화' style="width:200px; height:90px;font-size:50px;" >
           </div>
   <br><br><br><br><br><br>
@@ -130,23 +173,27 @@
         <footer>
            <div id="copyright">
                <br>
-             <h4>published date: 2019.07.15</h4>
+             <img src="{%static "image/hvengers.png"%}"  height= "68" width ="100" alt = alt.png align="left">
+             <h4  style = white-space:nowrap;>&nbsp;우)04763 서울특별시 성동구 왕십리로 222(사근동, 한양대학교) / 범죄 신고 번호 : 112</h4>
+             <h4>&nbsp;copyrightⓒ 2019hyundailvengerscriminal</h4>
+
            </div>
+
            <div id="SNS">
                <a href="https://www.hyundai.com/kr/ko/main.html" target="_blank">
-                   <img src="{%static "image/hyundai.jpg"%}" height="40" alt="hyundai">
+                   <img src="{%static "image/hyundai.png"%}" height="50" alt="hyundai">
                </a>
                <a href="https://www.police.go.kr/main.html" target="_blank">
-                    <img src="{%static "image/police.jpg"%}" height="40" alt="police">
+                    <img src="{%static "image/police.png"%}" height="50" alt="police">
                </a>
                <a href="https://www.sexoffender.go.kr/" target="_blank">
-                   <img src="{%static "image/sexoffender.jpg"%}" height="40" alt="sexoffender">
+                   <img src="{%static "image/sexoffender.png"%}" height="50" alt="sexoffender">
                </a>
             </div>
         </footer>
       </body>
 
-            <script language="javascript">
+            <script type="text/javascript">
             /*
             $(function () {
               if (navigator.geolocation) { // GPS�� �����ϸ�
@@ -176,5 +223,6 @@
             }*/
             var dt = new Date();
             document.getElementById("datetime").innerHTML = dt.toLocaleTimeString();
+
             </script>
 </html>
